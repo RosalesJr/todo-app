@@ -1,40 +1,49 @@
 import React from 'react';
 import { useContext } from 'react';
 import { SettingsContext } from '../../Context/Settings/Settings';
-import useForm from '../../hooks/form.js';
-import { Menu, Button, Group, TextInput, Text, Space } from '@mantine/core';
-import './style.scss';
+import useFormHook from '../../hooks/form.js';
+import { Card, Text, Button, Space, TextInput, Slider } from '@mantine/core';
 
 const AddForm = ({ children }) => {
-  const { defaultValues, addItem, incomplete } = useContext(SettingsContext);
-  const { handleChange, handleSubmit } = useForm(addItem, defaultValues);
+  const { defaultValues, addItem } = useContext(SettingsContext);
+  const { handleChange, handleSubmit } = useFormHook(addItem, defaultValues);
 
   return (
     <>
-      <Menu>
-        <Group>
-          <form onSubmit={handleSubmit}>
-            <Text className='ToDoHeader'><b>Items to do: {incomplete} </b></Text>
-
-            <Text className='ToDoItem'><b>Add To Do Item</b></Text>
-
-            <TextInput label="To Do Item"
-              onChange={handleChange} name="text" type="text" placeholder="Item Details" />
-
-            <TextInput label="Assigned To"
-              onChange={handleChange} name="assignee" type="text" placeholder="Assignee Name" />
-
-            <Text>Difficulty</Text>
-            <Space h="md" />
-            <input onChange={handleChange} defaultValue={defaultValues.difficulty} type="range" min={1} max={5} name="difficulty" />
-            <Space h="md" />
-
-
-            <Button type="submit">Add Item</Button>
-          </form>
-        </Group>
-
-      </Menu>
+      <Card shadow="sm" p="lg" radius="md" >
+        <form onSubmit={handleSubmit}>
+          <Card.Section withBorder >
+            <Text weight={800} px="xs">Add To Do Item</Text>
+          </Card.Section>
+          <Space h="md" />
+          <Text weight={500} px="xs" >To Do Item</Text>
+          <TextInput
+            onChange={handleChange}
+            name="text"
+            type="text"
+            placeholder="Item Details" />
+          <Space h="md" />
+          <Text weight={500} px="xs">Assigned To</Text>
+          <TextInput
+            onChange={handleChange}
+            name="assignee"
+            type="text"
+            placeholder="Assignee Name" />
+          <Space h="md" />
+          <Text weight={500} px="xs">Difficulty</Text>
+          <Slider
+            onChange={handleChange}
+            defaultValue={defaultValues.difficulty}
+            name="difficulty"
+            type="range"
+            min={1}
+            max={5}
+            step={1}
+            mb="lg"
+          />
+          <Button type="submit" variant="light" color="blue" fullWidth mt="md" radius="md">Add Item</Button>
+        </form>
+      </Card>
     </>
   )
 }

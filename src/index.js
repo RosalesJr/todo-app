@@ -1,19 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import Settings from './Context/Settings/Settings.jsx';
-import App from './app.js';
 import { MantineProvider } from '@mantine/core';
-import './style.scss'
-
-
+import App from './app.js';
+import SettingsProvider from './Context/Settings/Settings';
+import AuthProvider from './Context/Auth/Auth';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <MantineProvider>
-      <Settings>
-        <App />
-      </Settings>
+    <MantineProvider withGlobalStyles withNormalizeCSS>
+      <AuthProvider>
+        <SettingsProvider>
+          <App />
+        </SettingsProvider>
+      </AuthProvider>
     </MantineProvider>
   </React.StrictMode>
 );
