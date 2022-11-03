@@ -4,27 +4,39 @@ import {
   Routes,
   Route
 } from 'react-router-dom';
-import ToDo from './Components/ToDo';
-import Header from './Components/Header/Header'
 import Footer from './Components/Footer/Footer';
-import FormSetting from './FormSetting';
+import ToDo from './Components/ToDo';
+import AppHeader from './Components/Header/Header';
+import SettingsForm from './Components/SettingForm/FormSetting';
+import Auth from './Components/Auth';
+import Login from "./Components/Login/index";
 
 export default class App extends React.Component {
   render() {
     return (
       <>
         <Router>
-          <Header />
-          <Routes>
-          <Route path="/"
-            element={<ToDo />}>
-          </Route>
-          <Route path="/setting"
-            element={<FormSetting />}>
-          </Route>
-          </Routes>
+          <AppHeader />
+          <Login />
+          <Auth capability="create">
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <ToDo />
+                }>
+              </Route>
+              <Route
+                path="/settings"
+                element={
+                  <SettingsForm />
+                }>
+              </Route>
+            </Routes>
+          </Auth>
           <Footer />
         </Router>
+
       </>
     );
   }
