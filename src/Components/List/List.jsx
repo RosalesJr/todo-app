@@ -21,7 +21,7 @@ const List = ({ children }) => {
           <Card.Section withBorder >
             <Group position="apart" mt="md" mb="xs">
               <Badge
-                onClick={() => toggleComplete(item.id)}
+                onClick={() => toggleComplete(item._id)}
                 color={item.complete ? "blue" : "green"}
                 variant="light">{item.complete ? "complete" : "pending"}
               </Badge>
@@ -36,7 +36,7 @@ const List = ({ children }) => {
                 </Menu.Target>
                 <Menu.Dropdown>
                   <Menu.Item
-                    onClick={() => deleteItem(item.id)}
+                    onClick={() => deleteItem(item._id)}
                     icon={<IconTrash size={14} />}
                     color="red">
                     Delete

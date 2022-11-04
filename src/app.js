@@ -9,7 +9,7 @@ import ToDo from './Components/ToDo';
 import AppHeader from './Components/Header/Header';
 import SettingsForm from './Components/SettingForm/FormSetting';
 import Auth from './Components/Auth';
-import Login from "./Components/Login/index";
+
 
 export default class App extends React.Component {
   render() {
@@ -17,7 +17,6 @@ export default class App extends React.Component {
       <>
         <Router>
           <AppHeader />
-          <Login />
           <Auth capability="create">
             <Routes>
               <Route
